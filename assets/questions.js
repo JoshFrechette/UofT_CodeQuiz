@@ -17,3 +17,18 @@ var questions = [
       answer: "camel case"
     },
   ];
+
+
+  // Timer script
+/*
+var timeleft = 60;
+var downloadTimer = setInterval(function(){
+  document.getElementById("timer").innerHTML = "Time " + timeleft + " seconds";
+  timeleft -= 1;
+  if(timeleft <= 0){
+    clearInterval(downloadTimer);
+    document.getElementById("timer").innerHTML = "Time Out!"
+  }
+}, 1000);
+*/
+// 
