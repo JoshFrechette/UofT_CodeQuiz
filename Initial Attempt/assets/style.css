@@ -1,0 +1,28 @@
+p , a, h1, h2, h3 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.button {
+    text-decoration: none;
+    display: inline-block;
+    color: #ffffff;
+    background-color: blueviolet;
+    padding: 8px 16px;
+    border-radius:8px;
+    
+    
+}
+
+nav {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.highscoreNav {
+    float: left;
+}
+
