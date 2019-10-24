@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="assets/style.css">
+    <link rel="stylesheet" href="assets/style.css" type="text/css">
     <title>CodeQuiz</title>
 </head>
 
@@ -13,7 +13,7 @@
   <div class = "row">
     <div class = "col-6">
 <!--Link to the highscore page-->
-      <a href="leaderboard.html" class="highscoreNav">View High Scores</a>
+      <a href="leaderboard.html" id="highscoreNav">View High Scores</a>
     </div>
 <!--Timer keeping track of progress during the game -->
     <div class = "col-6">
@@ -35,14 +35,17 @@
 
 <!--start-page section-->
 <div class = "start-page">
-  <h2></h2><!--Question-->
+  <h2 id = "title"></h2><!--Question-->
   <!--Not the right type of code, might be needed later in the endgame screen<input type = "text" value = "3" name = "questions[title]">-->
+  
+  <!-- Call out the elements of an array within an array-->
   <ul>
-      <li></li><!--Answer 1-->
-      <li></li><!--Answer 2-->
-      <li></li><!--Answer 3-->
-      <li></li><!--Answer 4-->
+      <li id = "choices"></li><!--Answer 1-->
+      <li id = "choices"></li><!--Answer 2-->
+      <li id = "choices"></li><!--Answer 3-->
+      <li id = "choices"></li><!--Answer 4-->
   </ul>
+
   <p></p><!--Where the wrong or right prompt will appear-->
 </div>
 
