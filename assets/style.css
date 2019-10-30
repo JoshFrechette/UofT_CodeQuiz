@@ -12,6 +12,9 @@ a {
     text-decoration: none;
 }
 
+.possible-answers {
+    flex-direction: column;
+}
 .button {
     text-decoration: none;
     display: inline-block;
