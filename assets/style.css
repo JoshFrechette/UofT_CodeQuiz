@@ -6,7 +6,9 @@ p , a, h1, h2, h3 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-
+h1 {
+    font-weight: bold;
+}
 
 a {
     text-decoration: none;
@@ -16,24 +18,32 @@ a {
     flex-direction: column;
 }
 .button {
+    height: 2.5rem;
     text-decoration: none;
     display: inline-block;
     color: #ffffff;
     background-color: blueviolet;
     padding: 8px 16px;
-    border-radius:8px;
-    
-    
+    border-radius:8px;  
 }
 
-#timer {
+input {
+    border: 1px 80% blue;
+    margin-right: 1rem;
+}
+
+.time-clock {
     float: right;
 }
 
-.col {
-    justify-content: center;
+.page-content {
+    margin-top: 5rem;
+}
+.highscore-page {
+    margin-top: 5rem;
 }
 
-.container {   
-    justify-content: center;
+
+.header {   
+    justify-content: space-between;
 }
