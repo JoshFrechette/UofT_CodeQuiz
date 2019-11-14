@@ -1,11 +1,10 @@
 //Global variables
 
-var questionIndex = 0;
-var score = "";
-
-var timeLeft = 60;
-var questionsAsked = 0;
-
+var questionIndex = 0;// Declaring the initial Value that cycles through the quiz's possible answers
+var score = "";// Declaring the initial Value of the user's score
+var highScores = [];// Declaring the initially empty array for the highscores that pass through and from local storage
+var questionsAsked = 0;// Variable to keep track of the number of questions asked
+//Array that contains the quiz questions
 var questions = [
   {
   title: "Commonly used data types DO NOT include:",
@@ -22,35 +21,35 @@ var questions = [
   choices: ["giraffe bumps", "camel case", "lemur tail", "squirrel sprint"],
   answer: "camel case"
   },
+  {
+  title: "An HTML element created by JavaScript is called ____.",
+  choices: ["JSON", "DOM Object", "AJAX", "An Array"],
+  answer: "DOM Object"
+  },
+  {
+  title: "CSS file links are contained by which kind of tags in an HTML page?",
+  choices: ["<body>", "<html>", "<div>", "<head>"],
+  answer: "<head>"
+  },
 ];
 
-
-
-QuizGAme = function() {
+QuizGame = function() {
 // Game variables here
-
 console.log("Game has started");
-timeLeft = 60;
+timeLeft = 60;// Sets the timer initially to 60
 //===================Landing Page Section=============================
-head = document.getElementById("h1");
-var headLevel = document.createTextNode("Coding Quiz Challenge");
-head.appendChild(headLevel);
 
-var paragraph = document.getElementById("p");
-var text = document.createTextNode("Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!");
-paragraph.appendChild(text);
-
-$(".init-page").append($("<button>").text("Start Quiz").addClass("button").on("click", start))
+$(".init-page").append($("<h1>").text("Coding Quiz Challenge"))
+  .append($("<p>").text("Try to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalize your scoretime by ten seconds!"))
+    .append($("<button>").text("Start Quiz").addClass("button").on("click", start))// Press the button to start the game
 }
 //===================Quiz Game Section================================
 
 function start() {
 console.log("Game has started")
-$(".init-page").empty();//returns content to empty state
-console.log("start screen has loaded")
-  firstQuestion();
-  
-  //Timer countdown script, to start counting down after 
+$(".init-page").empty();//Empties inital page so that 
+
+  //Timer countdown script, to start counting down after the start button is pressed
   countDown = setInterval(function(){
   document.getElementById("timer").innerHTML = timeLeft;
   timeLeft -= 1;
@@ -60,10 +59,8 @@ console.log("start screen has loaded")
     document.getElementById("timer").innerHTML = "00";
     changeScore()
     }
-    /*if (timeLeft == 0){
-      changeScore() //Time runs out, go to changeScore page
-    }*/
     }, 1000);
+    firstQuestion();
 }
 
 // Ask the first question
@@ -71,15 +68,10 @@ function firstQuestion(){
   let currentItem = questions[questionIndex];
   for (i = 0; i <= currentItem.choices.length -1; i++) {  
       document.querySelector("#title").innerHTML = currentItem.title;//presents the question to the user   
-      console.log(currentItem.choices[i],currentItem.answer) 
-      questionNumber = questions.indexOf(questions[questionIndex].choices[i])
-    $(".possible-answers").append($(`<button id=${i}>`).addClass("button").text(questions[questionIndex].choices[i])//.append($("<div>").addClass("possible-answers").
+    $(".possible-answers").append($(`<button id=${i}>`).addClass("button").text([i + 1] + " " + questions[questionIndex].choices[i])//.append($("<div>").addClass("possible-answers").
       .on("click", function (event){//Sean helped by hard pressing the "i" value into the code.
-        console.log(questions)
-        console.log(event.target.id)
         let currentQuestion = questions[questionIndex].choices[event.target.id]
         let currentAnswer = questions[questionIndex].answer
-        //console.log(currentQuestion, currentAnswer)
         
           if (currentAnswer == currentQuestion){
             $("#prompt").append("<hr>").append($("<p>").text("Right!!!"))            
@@ -88,7 +80,6 @@ function firstQuestion(){
             $("#prompt").append("<hr>").append($("<p>").text("Wrong!!!"))          
           }         
           nextQuestion(questions[++questionIndex]) 
-          console.log(questionIndex.length, questionIndex.length)   
       }))
   } 
 }
@@ -96,28 +87,19 @@ function firstQuestion(){
 // Ask the next question, repeat
 function nextQuestion(nextItem){//nextItem's value needs to increment through iterations
 
-  questionsAsked += 1;
-  console.log(questionsAsked)
+  questionsAsked += 1; //Go to the next question in the array
   setTimeout (function(){
-    console.log("next question has loaded and " + nextItem)
-    //$(".ask-question").empty();//returns content to empty state 
     //returns contents to empty state
     $("#prompt").empty();
     $(".possible-answers").empty(); 
-    //console.log(questions[questionIndex+1])
     document.querySelector("#title").innerHTML = nextItem.title;//presents the question to the user   
-    //console.log(nextItem.choices,nextItem.answer) 
 
     for (i = 0; i <= questions[questionIndex].choices.length -1; i++) {
-          //questionNumber = questions.indexOf(nextItem.choices[i])
-      $(".possible-answers").append($(`<button id=${i}>`).addClass("button").text(nextItem.choices[i])
+      $(".possible-answers").append($(`<button id=${i}>`).addClass("button").text([i +1] + " " + nextItem.choices[i])
         .on("click", function (event){//Sean helped by hard pressing the "i" value into the code.
-          console.log(questions.length)
-          console.log(event.target.id)
           let currentQuestion = questions[questionIndex].choices[event.target.id]
           let currentAnswer = questions[questionIndex].answer
-          console.log(currentQuestion, currentAnswer)
-          
+
           if (questionsAsked <= questions.length){
             if (currentAnswer == currentQuestion){
               $("#prompt").append("<hr>").append($("<p>").text("Right!!!"))
@@ -129,8 +111,8 @@ function nextQuestion(nextItem){//nextItem's value needs to increment through it
             nextQuestion(questions[++questionIndex]) 
           } 
           if (questionsAsked == questions.length) {
-          console.log(questions.length, questionsAsked)
-          changeScore()
+
+          changeScore()//Go to the input score to leaderboard section
           }
         }))
     }
@@ -143,42 +125,54 @@ function changeScore() {
   clearInterval(countDown);
   setTimeout (function(){
 $(".ask-question").empty(); //Empties the question page
-console.log("changeScore screen has loaded")
+
 score = document.getElementById("timer").innerHTML;// Copies the time left to become the score
-var highScores = [];
+
 //Loads the changeScore page info
       $(".changeScore-page")
         .append($("<h2>").text("All Done!"))
           .append($("<p>").text("Your final score is " + score + "."))
             .append($("<p>").text("Enter Initials: ")
-              .append("<input>").addClass("initials")
-                .append($("<button>").addClass("button").text("Submit").on("click", function(){
-                  let userInitials = $(".initials").val();
-                  console.log(userInitials)
-                  let userScoreInput = (userInitials + "-" + score)
-                  highScores.push(userScoreInput)
-                  console.log(userScoreInput)
-                  console.log(highScores)
-                  window.location.replace("leaderboard.html");
-                  leaderBoard()
-                })))
+              .append($("<input>").addClass("initials"))
+                .append($("<button type=submit>").addClass("button").text("Submit").on("click", passValue)
+                ))
   }, 1000);
+}
+
+function passValue(){
+  var existingHighScores = JSON.parse(localStorage.getItem("highScores"));
+  if(existingHighScores == null) existingHighScores = [];
+  let userInitials = $(".initials").val();
+  let userScoreInput = (userInitials + "-" + score) //Pair the users initials with their score
+  existingHighScores.push(userScoreInput);//Add the users score to the highscore array
+  highScores = existingHighScores;
+  localStorage.setItem("highScores", JSON.stringify(highScores));
+  window.location.replace("leaderboard.html");// Go to leaderboard page
+  leaderBoard()//Load leaderboard script
 }
 
 //============Leader Board Section======================================
 
 function leaderBoard(){
-  var highScores = [];
-  console.log(highScores)
-  //$(".highscores").append("<h1>").text("Highscores")
-  for (i = 0; i < highScores.length; i++) {
-    $(".highscores").append("<p>").text(highScores[i])
-  }
-  $(".highscores").append($("<button>").text("Start Quiz").addClass("button").on("click", start))
 
-$(".highscores").append($("<button>").text("Clear Highscores").addClass("button").on("click", function(){
-  highScores = [];
-}))
+  $(".highscore-buttons")//Button that returns to start page
+    .append($("<button>").text("Start Quiz").addClass("button").on("click", Reload))//Start the quiz again
+
+  $(".highscore-buttons")//Button that clears local storage
+    .append($("<button>").text("Clear Highscores").addClass("button").on("click", function(){
+    $(".highscore-list").empty();
+    localStorage.clear();
+  }))
+  retrievedHighScores = JSON.parse(localStorage.getItem('highScores'));
+
+  for (i = 0; i < retrievedHighScores.length; i++) {//Creates the leaderboard from the hghscores in local storage
+    $(".highscore-list").append($("<li>").text(retrievedHighScores[i]))// Go t]hrough stored high scores and display on screen
+  }
 }
-QuizGAme()
-console.log("document has been loaded");
+
+function Reload() {
+  QuizGame()// Restart quizgame
+  window.location.replace("index.html");// Go to leaderboard page
+}
+QuizGame()//Start the game
+

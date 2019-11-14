@@ -14,10 +14,22 @@ a {
     text-decoration: none;
 }
 
+ol{
+    padding-left: 0pt;
+}
+li {
+    color: black;
+    margin-top: 1rem;
+    padding-left: 5px;
+    list-style-position: inside;
+    background-color:#eca2f5;
+    border-radius:8px; 
+    opacity: 0.75;
+}
 .possible-answers {
     flex-direction: column;
 }
-.button {
+.button, #link-button {
     height: 2.5rem;
     text-decoration: none;
     display: inline-block;
@@ -27,7 +39,7 @@ a {
     border-radius:8px;  
 }
 
-input {
+input::after {
     border: 1px 80% blue;
     margin-right: 1rem;
 }
@@ -42,7 +54,6 @@ input {
 .highscore-page {
     margin-top: 5rem;
 }
-
 
 .header {   
     justify-content: space-between;

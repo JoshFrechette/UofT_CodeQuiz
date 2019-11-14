@@ -1,6 +1,13 @@
 # CodeQuiz
 Assignment 4 for coding Bootcamp
 
+# GitHub Deployment links
+
+https://twistedpixels.github.io/CodeQuiz/
+
+https://github.com/TwistedPixels/CodeQuiz.git
+
+
 Directly from the Assignment Description
 
 # Unit 04 Web APIs Homework: Code Quiz
@@ -36,4 +43,39 @@ How do you deliver this? Here are some guidelines:
 
 ![code quiz](./Assets/04-Web-APIs-homework-demo.gif)
 
+
+# pseudoCode
+
+User is presented with the landing page where they are presented with the option to either  
+    - Go to Highscore Page (HTML Link)
+    - Start the game (Press a button to progress to the quiz game)
+
+Upon pressing the start button;
+    - The timer starts counting down
+    - The user is presented with the first question (for loop, cycling through the questions and possible answers)
+
+User either
+    - Chooses correctly => on screen alert that they were right => proceed to next question
+    - Chooses incorrectly => on screen alert that they were wrong => deduct 10 secs from their score/timeleft => proceed to next question
+
+User cycles through all questions and is presented with an input to include their initials
+    => upon submit, intials and score are stored and added to the highscores
+
+User can 
+    - Play again
+    - Clear highscores
+
+# Issues (screenshots in supporting file folder)
+
+Screenshot 1
+    Buttons not presented vertically
+    Solution; styling, "flex-direction: column;"
+
+Screenshot 2
+    After creating NextQuestion function, possible answers not styled properly
+    Solution; rework the for loop to accomodate a slightly more complicated input
+
+Screenshot 3
+    Highscore page not loading javascript, local storage
+    Solution; using JSON to get and retrieve local storage data
 
